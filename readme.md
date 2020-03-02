@@ -6,8 +6,8 @@ Magento 2 Module to add Customer Compare list as a Dropdown to the Site Header
 
 State | Desktop | Mobile
 -- | --- | ---
-Empty | | 
-Filled | | 
+Empty | ![empty-desktop](screenshots/empty-desktop.png) | ![empty-mobile](screenshots/empty-mobile.png)
+Filled | ![filled-desktop](screenshots/filled-desktop.png) | ![filled-mobile](screenshots/filled-mobile.png)
 
 ## Install Instructions
 
