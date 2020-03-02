@@ -20,5 +20,6 @@
         "psr-4": {
             "NathanDay\\CompareDropdown\\": ""
         }
-    }
+    },
+    "version": "1.0.0"
 }
