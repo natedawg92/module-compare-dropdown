@@ -1,0 +1,53 @@
+<?php
+/** @var $block Magento\Framework\View\Element\Template */
+/** @var Magento\Catalog\Helper\Product\Compare $helper */
+$helper = $this->helper(Magento\Catalog\Helper\Product\Compare::class);
+?>
+<div data-block="compare" class="compare-wrapper">
+    <a class="action compare"
+       data-bind="scope: 'compareProducts'"
+       data-mage-init='{"dropdown":{}}'
+       data-toggle="block-compare"
+       aria-haspopup="true"
+       href="#"
+    >
+        <span class="text"><?= $block->escapeHtml(__('Compare Products')); ?></span>
+        <!-- ko if: compareProducts().count -->
+        <span data-bind="text: compareProducts().items.length" class="counter qty"></span>
+        <!-- /ko -->
+    </a>
+    <ul class="dropdown block-compare"
+        data-bind="scope: 'compareProducts'">
+        <!-- ko if: compareProducts().count -->
+        <!-- ko foreach: compareProducts().items -->
+        <li class="product-item">
+            <input type="hidden" class="compare-item-id" data-bind="value: id"/>
+            <strong class="product-item-name">
+                <a data-bind="attr: {href: product_url}, html: name" class="product-item-link"></a>
+            </strong>
+            <a href="#"
+               data-bind="attr: {'data-post': remove_url}"
+               title="<?= $block->escapeHtmlAttr(__('Remove This Item')); ?>"
+               class="action delete">
+                <span><?= $block->escapeHtml(__('Remove This Item')); ?></span>
+            </a>
+        </li>
+        <!-- /ko -->
+        <li class="actions-toolbar">
+            <a class="action details"
+               data-bind="attr: {'href': compareProducts().listUrl}"
+               title="<?= $block->escapeHtmlAttr(__('Go to Compare')) ?>">
+                <span><?= $block->escapeHtml(__('Go to Compare')) ?></span>
+            </a>
+        </li>
+        <!-- /ko -->
+        <!-- ko ifnot: compareProducts().count -->
+        <li class="empty"><?= $block->escapeHtml(__('You have no items to compare.')); ?></li>
+        <!-- /ko -->
+
+        <li class="compare-promotion"><?= $block->getChildHtml('compare.promotion'); ?></li>
+    </ul>
+    <script type="text/x-magento-init">
+    {"*": {"Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout(); ?>}}
+    </script>
+</div>
